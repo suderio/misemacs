@@ -1,5 +1,10 @@
 -- hooks/post_install.lua
 function PLUGIN:PostInstall(ctx)
+    local version = ctx.version or (ctx.sdkInfo and ctx.sdkInfo.version) or ctx.rootPath:match("([^/\\]+)$")
+
+    if not version then
+        error("Error: Could not determine Emacs version from rootPath.")
+    end
     local os_type = RUNTIME.osType
 
     if os_type == "windows" then
@@ -8,7 +13,7 @@ function PLUGIN:PostInstall(ctx)
     end
 
     print("---------------------------------------------------------")
-    print("Preparing configuration for Emacs " .. ctx.version .. "...")
+    print("Preparing configuration for Emacs " .. version .. "...")
     print("---------------------------------------------------------")
 
     local build_cmd = string.format([[
@@ -129,7 +134,7 @@ if [ "$SRC_DIR" != "." ]; then
 fi
 
 echo "Emacs compiled and installed successfully to %s"
-    ]], ctx.rootPath, ctx.version, ctx.version, ctx.rootPath, ctx.rootPath, ctx.rootPath)
+    ]], ctx.rootPath, version, version, ctx.rootPath, ctx.rootPath, ctx.rootPath)
 
     local tmpfile = ctx.rootPath .. "/build_emacs.sh"
     local f = io.open(tmpfile, "w")

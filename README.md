@@ -5,7 +5,7 @@ A [mise-en-place](https://mise.jdx.dev) plugin for managing [Emacs](https://www.
 ## Installation
 
 ```bash
-mise plugin add emacs [https://github.com/](https://github.com/)<YOUR_GITHUB_USER>/mise-emacs
+mise plugin add emacs [https://github.com/](https://github.com/suderio/misemacs)
 ```
 
 ## Usage
@@ -20,6 +20,20 @@ mise install emacs@29.4
 # Set as default
 mise use -g emacs@29.4
 ```
+
+## Options
+
+On linux, the plugin will try to optimize configuration options to the host. It will check the following:
+
+- Treesitter (v29+)
+
+- JSON (v27 - v29)
+
+- PGTK
+
+- DBUS (v23+)
+
+If supported, configure will turn these options on. Using the `MISE_EMACS_CONFIGURE_OPTS` will completelly bypass this detection.
 
 ## Platform Architecture
 - Windows: The plugin downloads official pre-compiled zip binaries. Currently, GNU only supports amd64/x86_64 architecture for Windows out of the box.
@@ -41,6 +55,7 @@ sudo apt install build-essential libncurses-dev libgnutls28-dev
 
 #### macOS:
 ```bash
+# Is this right? I don't know.
 xcode-select --install
 ```
 
