@@ -5,7 +5,7 @@ A [mise-en-place](https://mise.jdx.dev) plugin for managing [Emacs](https://www.
 ## Installation
 
 ```bash
-mise plugin add emacs [https://github.com/](https://github.com/suderio/misemacs)
+mise plugin add emacs https://github.com/suderio/misemacs
 ```
 
 ## Usage
